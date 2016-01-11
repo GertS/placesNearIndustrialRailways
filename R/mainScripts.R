@@ -71,15 +71,10 @@ mainFunction <- function(railType = "industrial", bufferWidth = 1000){
   
   
   # Plot --------------------------------------------------------------------
-  
-  
-  plot(indusRailsWGS, col = "lightblue", lwd=2, add=F)
+
+  plot(indusRailsWGS, col = "lightblue", lwd=2, add=F, axes=T, main="Buffer zone and intersect places")
   plot(indusRails, col = "red", lwd=5, add=T)
-  # text(max(bbox(indusRails)[1,]), max(bbox(indusRails)[2,]), "Industrial \n railroads")
   plot(placesInBuffer, pch=19, cex=2, col = "red", add=T)
   text(placesInBufferStrings@coords[,1], placesInBufferStrings@coords[,2], labels = placesInBufferStrings$name)
-  
-  text(placesInBuffer@coords[1], placesInBuffer@coords[2], labels = placesInBufferStrings$name)
-  # plot arrow for indicating buffer
-  range <- bbox(indusRailsWGS)
+
 }
