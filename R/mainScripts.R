@@ -46,6 +46,12 @@ indusRailsRD <- spTransform(indusRails,prj_string_RD)
 indusRailsBuffer <- gBuffer(indusRailsRD,width = 1000,byid=TRUE)
 indusRailsWGS <- spTransform(indusRailsBuffer, prj_string_WGS)
 
+
+# Intersect ---------------------------------------------------------------
+
+placesWGS <- spTransform(places, prj_string_WGS)
+placesInBuffer <- gIntersection(indusRailsWGS, placesWGS,byid=TRUE)
+
 # City and population -----------------------------------------------------
 
 # Utrecht, population: 100000
