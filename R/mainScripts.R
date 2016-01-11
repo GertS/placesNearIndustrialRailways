@@ -43,7 +43,7 @@ prj_string_WGS <- CRS("+proj=longlat +datum=WGS84")
 prj_string_RD <- CRS("+proj=sterea +lat_0=52.15616055555555 +lon_0=5.38763888888889 +k=0.9999079 +x_0=155000 +y_0=463000 +ellps=bessel +towgs84=565.2369,50.0087,465.658,-0.406857330322398,0.350732676542563,-1.8703473836068,4.0812 +units=m +no_defs")
 
 indusRailsRD <- spTransform(indusRails,prj_string_RD)
-indusRailsBuffer <- gBuffer(indusRailsRD,width = 1000,byid=TRUE)
+indusRailsBuffer <- gBuffer(indusRailsRD,width = 5000,byid=TRUE)
 indusRailsWGS <- spTransform(indusRailsBuffer, prj_string_WGS)
 
 
@@ -71,8 +71,10 @@ print(paste(as.character(placesInBufferStrings$name),"with a population around:"
 
 plot(indusRailsWGS, col = "lightblue", lwd=2, add=F)
 plot(indusRails, col = "red", lwd=5, add=T)
-text(max(bbox(indusRails)[1,]), max(bbox(indusRails)[2,]), "Industrial \n railroads")
+# text(max(bbox(indusRails)[1,]), max(bbox(indusRails)[2,]), "Industrial \n railroads")
 plot(placesInBuffer, pch=19, cex=2, col = "red", add=T)
+text(placesInBufferStrings@coords[,1], placesInBufferStrings@coords[,2], labels = placesInBufferStrings$name)
+
 text(placesInBuffer@coords[1], placesInBuffer@coords[2], labels = placesInBufferStrings$name)
 # plot arrow for indicating buffer
 range <- bbox(indusRailsWGS)
