@@ -3,7 +3,15 @@
 # Assignement 6 GeoScripting
 
 
-# link naar NL places: www.mapcruzin.com/download-shapefile/netherlands-places-shape.zip
-# link naar NL rails: www.mapcruzin.com/download-shapefile/netherlands-railways-shape.zip
 
-download.file(url = 'https://github.com/GeoScripting-WUR/IntroToRaster/raw/gh-pages/data/gewata.zip', destfile = 'gewata.zip', method = 'wget')
+# Download data -----------------------------------------------------------
+
+placeURL <- "www.mapcruzin.com/download-shapefile/netherlands-places-shape.zip"
+railURL <- "www.mapcruzin.com/download-shapefile/netherlands-railways-shape.zip"
+
+dir.create("data", showWarnings = FALSE)
+download.file(url = placeURL, destfile = 'data/places.zip', method = 'wget')
+download.file(url = railURL, destfile = 'data/rails.zip', method = 'wget')
+
+places <- unzip('data/places.zip', exdir='data/places')
+rails <- unzip('data/rails.zip', exdir='data/rails')
