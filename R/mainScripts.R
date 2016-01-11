@@ -47,6 +47,9 @@ mainFunction <- function(railType = "industrial", bufferWidth = 1000){
   indusRailsBuffer <- gBuffer(indusRailsRD,width = bufferWidth,byid=TRUE)
   indusRailsWGS <- spTransform(indusRailsBuffer, prj_string_WGS)
   
+  #buffers to one multipolygon:
+  indusRailsWGS <- gUnaryUnion(indusRailsWGS)
+  
   
   # Intersect ---------------------------------------------------------------
   
