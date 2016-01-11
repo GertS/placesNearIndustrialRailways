@@ -50,8 +50,16 @@ indusRailsWGS <- spTransform(indusRailsBuffer, prj_string_WGS)
 # Intersect ---------------------------------------------------------------
 
 placesWGS <- spTransform(places, prj_string_WGS)
-placesInBuffer <- gIntersection(indusRailsWGS, placesWGS,byid=TRUE)
+placesInBuffer <- gIntersection(placesWGS,indusRailsWGS,byid=TRUE)
+
+
+# Find City ---------------------------------------------------------------
+
+placesID <- unlist(strsplit(rownames(placesInBuffer@coords),split = " "))[1]
+placesInBufferStrings <- placesWGS[as.numeric(placesID),]
 
 # City and population -----------------------------------------------------
 
 # Utrecht, population: 100000
+print(paste(as.character(placesInBufferStrings$name),"with a population of around:",as.character(placesInBufferStrings$population)))
+
