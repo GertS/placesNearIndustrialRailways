@@ -2,6 +2,7 @@
 # 160109
 # Assignement 6 GeoScripting
 
+library(rgdal)
 
 
 # Download data -----------------------------------------------------------
@@ -13,5 +14,14 @@ dir.create("data", showWarnings = FALSE)
 download.file(url = placeURL, destfile = 'data/places.zip', method = 'wget')
 download.file(url = railURL, destfile = 'data/rails.zip', method = 'wget')
 
-places <- unzip('data/places.zip', exdir='data/places')
-rails <- unzip('data/rails.zip', exdir='data/rails')
+placesDir = 'data/places'
+railsDir = 'data/rails'
+
+unzip('data/places.zip', exdir=placesDir)
+unzip('data/rails.zip', exdir=railsDir)
+
+
+# Read data ---------------------------------------------------------------
+
+places <- readOGR(dsn = placesDir, layer = "places")
+rails <- readOGR(dsn = railsDir, layer = "railways")
