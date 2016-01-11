@@ -11,8 +11,13 @@ placeURL <- "www.mapcruzin.com/download-shapefile/netherlands-places-shape.zip"
 railURL <- "www.mapcruzin.com/download-shapefile/netherlands-railways-shape.zip"
 
 dir.create("data", showWarnings = FALSE)
-download.file(url = placeURL, destfile = 'data/places.zip', method = 'wget')
-download.file(url = railURL, destfile = 'data/rails.zip', method = 'wget')
+
+inputZip <- list.files(path='data', pattern= '^.*\\.zip$')
+if (length(inputZip) == 0){ ##only download when not alrady downloaded (safes time to debug the whole script)
+  download.file(url = placeURL, destfile = 'data/places.zip', method = 'wget')
+  download.file(url = railURL, destfile = 'data/rails.zip', method = 'wget')
+}
+
 
 placesDir = 'data/places'
 railsDir = 'data/rails'
@@ -25,3 +30,4 @@ unzip('data/rails.zip', exdir=railsDir)
 
 places <- readOGR(dsn = placesDir, layer = "places")
 rails <- readOGR(dsn = railsDir, layer = "railways")
+
