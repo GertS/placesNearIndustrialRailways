@@ -55,13 +55,15 @@ placesInBuffer <- gIntersection(placesWGS,indusRailsWGS,byid=TRUE)
 
 # Find City ---------------------------------------------------------------
 
-placesID <- unlist(strsplit(rownames(placesInBuffer@coords),split = " "))[1]
+placesIDList <- strsplit(rownames(placesInBuffer@coords),split = " ")
+placesID <- lapply(placesIDList, function(n) n[1])
 placesInBufferStrings <- placesWGS[as.numeric(placesID),]
 
 # City and population -----------------------------------------------------
 
 # Utrecht, population: 100000
-print(paste(as.character(placesInBufferStrings$name),"with a population of around:",as.character(placesInBufferStrings$population)))
+# lapply(placesInBufferStrings,function(n) print(n))
+print(paste(as.character(placesInBufferStrings$name),"with a population around:",as.character(placesInBufferStrings$population)))
 
 
 # Plot --------------------------------------------------------------------
