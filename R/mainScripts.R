@@ -31,3 +31,7 @@ unzip('data/rails.zip', exdir=railsDir)
 places <- readOGR(dsn = placesDir, layer = "places")
 rails <- readOGR(dsn = railsDir, layer = "railways")
 
+
+# City and population -----------------------------------------------------
+
+# Utrecht, population: 100000
