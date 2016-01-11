@@ -63,3 +63,15 @@ placesInBufferStrings <- placesWGS[as.numeric(placesID),]
 # Utrecht, population: 100000
 print(paste(as.character(placesInBufferStrings$name),"with a population of around:",as.character(placesInBufferStrings$population)))
 
+
+# Plot --------------------------------------------------------------------
+
+
+plot(indusRailsWGS, col = "lightblue", lwd=2, add=F)
+plot(indusRails, col = "red", lwd=5, add=T)
+text(max(bbox(indusRails)[1,]), max(bbox(indusRails)[2,]), "Industrial \n railroads")
+plot(placesInBuffer, pch=19, cex=2, col = "red", add=T)
+text(placesInBuffer@coords[1], placesInBuffer@coords[2], labels = placesInBufferStrings$name)
+# plot arrow for indicating buffer
+range <- bbox(indusRailsWGS)
+
